@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>Color Guessing Game</h1>
+<button onclick="startGame()">Start Game!</button>
+
+<script>
+    const colors = ['blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow']
+  let randomColor;
+  let guess;
+  let attemps= 0;
+    const getRandomColor = () =>{
+         randomColor = Math.floor(Math.random()*  colors.length) ;
+        
+       }
+
+    const startGame = () =>{
+        getRandomColor();
+        console.log(colors[randomColor])
+
+        do {
+    guess = prompt(`I am thinking of one of these colors:\n\n ${colors.join(', ')} \n\nWhat color am I thinking of?\n`);
+
+    if (guess === null) {
+      alert("You are a quitter!");
+      return;
+    }
+    attemps++;
+    if ( guess.toLowerCase() === colors[randomColor]) {
+        document.body.style.background = guess;
+
+      alert(`Congratulations! Your guess is correct! Attemps: ${attemps}`);
+     
+      break;
+    } else {
+      alert("Sorry, that's incorrect. Try again.");
+    }
+  } while (true); 
+       attemps = 0;
+        
+    }
+  
+
+</script>    
+</body>
+</html>

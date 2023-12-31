@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Waves Aquatic Park</title>
+</head>
+<body>
+
+<h1>Wild Waves Aquatic Park</h1>
+<button onclick="buyTicket()">Purchase Attraction</button>
+
+<script>
+    const WAVE_POOL_MIN_HEIGHT = 42; // in inches
+    const WATERSLIDE_MIN_HEIGHT = 48; // in inches
+    const LAZY_RIVER_MIN_HEIGHT = 36; // in inches
+
+    function buyTicket() {
+        const attractionType = prompt(
+            'Which attraction do you want to visit: type "wave" for wave pool, "water" for waterslide, or "river" for lazy river?'
+        );
+        const userHeight = prompt("What is your height in inches?");
+        const withAdult = prompt("Are you with an Adult?")
+
+        console.log("User's selected attraction is " + attractionType);
+        console.log("User's height is " + userHeight);
+        console.log("Is the user with an adult? " + withAdult);
+       
+        const isAllowed = checkHeight(attractionType, userHeight );
+        if (isAllowed === true) {
+            alert("You are allowed to ride this attraction");
+        } else {
+            alert("You are not allowed to ride");
+        }
+    }
+
+    function checkHeight(attraction, height, withAdult) {
+        if (height >= LAZY_RIVER_MIN_HEIGHT && attraction === "river") {
+            return true;
+        } else if (height >= WAVE_POOL_MIN_HEIGHT && attraction === "wave") {
+            return true;
+        } else if (height >= WATERSLIDE_MIN_HEIGHT && attraction === "waterslide") {
+            return true;
+        } else if (height >= WAVE_POOL_MIN_HEIGHT && withAdult.toLowerCase() === 'yes' ) {
+            return true 
+        } else {
+            return false
+        }
+        
+    }
+</script>
+
+</body>
+</html>
